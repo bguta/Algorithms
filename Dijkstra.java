@@ -7,11 +7,11 @@ public static Map<Vertex, Integer> Dij(Graph graph, Vertex start) {
 
 		Set<Vertex> Q = new HashSet<>();
 		Map<Vertex, Integer> dis = new HashMap<>();
-		Map<Vertex, List<Vertex>> nodes = new HashMap<>();
+		Map<Vertex, List<Vertex>> path = new HashMap<>();
 
 		for (Vertex v : graph.getVertices()) {
 			dis.put(v, Integer.MAX_VALUE - 1);
-			nodes.put(v, new ArrayList<>());
+			path.put(v, new ArrayList<>());
 			Q.add(v);
 		}
 		
@@ -35,7 +35,7 @@ public static Map<Vertex, Integer> Dij(Graph graph, Vertex start) {
 					int alt = dis.get(u) + 1;
 					if(alt < dis.get(v)) { //shorter path
 						dis.put(v, alt);
-						nodes.get(v).add(u);
+						path.get(v).add(u);
 					}
 				}
 			}
@@ -44,7 +44,7 @@ public static Map<Vertex, Integer> Dij(Graph graph, Vertex start) {
 		}
 		
 		return dis;
-		//stuff.add(nodes);
+		//stuff.add(path);
 		
 	}
 }
